@@ -14,6 +14,9 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "src",
+"types": ["react", "react-dom"],
+
 
     /* Linting */
     "strict": true,
