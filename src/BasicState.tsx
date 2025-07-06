@@ -7,9 +7,9 @@ export const BasicState = () => {
 
 const fibonacciHandler = (): void => {
     const copy = [...FIBONACCI]
-    const lastIdx = copy.length-1
-    copy.push(copy[lastIdx] + copy[lastIdx-1])
-    setFIBONACCI(copy)
+    const lastIndex = copy.length-1
+    copy.push(copy[lastIndex] + copy[lastIndex - 1])
+setFIBONACCI(copy)
 }
 
  type Counter = (action: 'plus' | 'minus') => void
