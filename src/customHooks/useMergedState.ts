@@ -6,8 +6,8 @@ import type { DeepPartial } from "tsdef"
 type useMergeState<T> = [T, (changes: DeepPartial<T>) => void]
 
 
-export const useMergeState = <T>(initialState: T): useMergeState<T> => {
-    const [state, setState] = useState(initialState);
+export const useMergedState = <T>(initialState: T): useMergeState<T> => {
+    const [state, setState] = useState<T>(initialState);
 
     const mergeState = (changes: DeepPartial<T>) => {
         setState((prevState) => {

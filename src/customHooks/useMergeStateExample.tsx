@@ -1,5 +1,6 @@
 // import { Button, ChapterWrapper, PropsTable, Toolbar } from 'components';
 import { FormField } from './FormField';
+import { useFieldState } from './useFieldState';
 import { useMergedState } from './useMergedState';
 
 type Person = {
@@ -32,9 +33,12 @@ function validatePositiveNumber(stringValue: string): number | null {
     return Math.max(parseInt(stringValue), 0);
 }
 
+// сут філд стейт має викликати функцію валідейт
+
 export function UseMergedStateExample() {
     const [data, setData] = useMergedState<Person>(INITIAL_STATE);
-
+    const [fieldValue, setFieldValue] = useFieldState<Person>(INITIAL_STATE)
+console.log(INITIAL_STATE)
 
     return (
             <form>
@@ -42,8 +46,10 @@ export function UseMergedStateExample() {
                     name="firstName"
                     label="First name"
                     value={data.firstName}
-                    onChange={(firstName) => setData({ firstName })}
-                />
+                    onChange={(firstName) => {
+                    setData({ firstName });
+                    setFieldValue({firstName});
+                }}                />
                 <FormField
                     name="lastName"
                     label="Last name"
