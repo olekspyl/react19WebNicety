@@ -1,22 +1,17 @@
 
 export const useLocalStorage = (key: string, initValue: number | null) => {
-
-
-
 const readItem = () => {
- try {
-            const stringValue = localStorage.getItem(key) ?? String(initValue)
-            return parseInt(stringValue)
-        } catch (error) {
-            console.error(error)
-        }
+    if(!initValue) return;
+    const data = localStorage.getItem(key)
+    return parseInt(data)
 }
 
-const updateItem = (value: number) => {
-     if (initValue === null) return;
-        localStorage.setItem(key, String(value))
+const updateItem = (value: number | null) => {
+    const data = localStorage.setItem(key, value)
+    return String(data)
 }
-       return {readItem, updateItem}
+
+return {readItem, updateItem}
 
 }
 

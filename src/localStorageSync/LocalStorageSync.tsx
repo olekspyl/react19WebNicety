@@ -6,23 +6,20 @@ const DELTA = 1;
 const STORAGE_KEY = 'chapter-6-current-count';
 
 export function LocalStorageSync() {
-    const [initial, setInitial] = useState(0);
-    const {readItem, updateItem} = useLocalStorage(STORAGE_KEY, initial)
+    const [init, setInit] = useState<number>(0)
+   const {readItem, updateItem} = useLocalStorage(STORAGE_KEY, init)
 
-    useEffect(() => {
-        const dataFromStorage = readItem()
-        setInitial(dataFromStorage)
-    }, [])
+useEffect(() => {
+const result = readItem()
+setInit(result)
+}, [])
 
-    const {stateCount, increase, decrease} = useCounter(DELTA, () => {
-       return readItem()
-    })
+const {count, increase, decrease} = useCounter<number>(DELTA, init, () => updateItem())
 
-
-    useEffect(() => {
-        
-        updateItem(stateCount)}, [stateCount])
-
+useEffect(() => {
+    const result = updateItem(count)
+    setInit(result)
+}, [count])
 
     return (<>
    

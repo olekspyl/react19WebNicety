@@ -32,3 +32,20 @@ console.log('state is new')
   return [state, mergeState]
 };
 // type useFieldState<T> = [T, (changes: DeepPartial<T>) => void];
+
+
+const recursiveFn = (value: any) => {
+if(typeof value !== 'object' || value === 'null') {
+  return value
+}
+
+if(Array.isArray(value)) {
+  return value.map(item => structuredClone(item))
+}
+
+if(typeof value === 'object' || value !== null) {
+  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, structuredClone(item)]))
+}
+
+
+}
